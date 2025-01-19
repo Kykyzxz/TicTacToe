@@ -1,3 +1,12 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  /* removes the default margin */
+* {
+    margin: 0;
+}
+
 body{
     background-color: #795695;
     margin: 0;
