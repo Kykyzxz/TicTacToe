@@ -94,5 +94,7 @@ button:active{
     }
     button{
         font-size: 2rem;
+        height: 100px;
+        width: 100px;
     }
 }
