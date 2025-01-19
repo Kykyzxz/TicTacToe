@@ -6,7 +6,7 @@ const game = {
 let cols = 3
 let rows = 3
 let board = [] //board of the game
-const buttons = document.querySelectorAll('.btn'); //selects all my     button
+const buttons = document.querySelectorAll('.btn'); //selects all mybutton
 
 
 //how to set up the board 3*3
@@ -43,6 +43,8 @@ buttons.forEach((button, index) => {
 
 
 //winning condition
-
+function winCondition(){
+    
+}
 
 //[[]]
