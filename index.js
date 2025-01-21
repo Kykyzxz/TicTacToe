@@ -1,53 +1,48 @@
 const game = {
     playerOne: 0,
     playerTwo: 0,
-    currentPlayer: 'Player 1', //indicates which player is going to move
+    currentPlayer: 'playerOne', //indicates which player is going to move
     winIndex: [ // indices for winning
-        [0,1,2], 
-        [3,4,5],
-        [6,7,8],
-        [0,3,6],
-        [1,4,7],
-        [2,5,8],
-        [0,4,8],
-        [2,4,6]
-    ]
+        [0,1,2], [3,4,5],[6,7,8], //rows
+        [0,3,6],[1,4,7],[2,5,8], //cols
+        [0,4,8],[2,4,6]//diagonals
+            ]
 }
-let count = 0 //count for the game
-let cols = 3
-let rows = 3
+
+let winSwitch = null; //true:win, false:draw, null:game continues
 let board = [] //board of the game
-const buttons = document.querySelectorAll('.btn'); //selects all mybutton
+const buttons = document.querySelectorAll('.btn'); //selects all mybutton/ this is my nodeList
 
 //how the game works(conditions = moves per player)
+//   
 buttons.forEach((button, index) => {
     button.addEventListener('click' , () => {
-        if(game.currentPlayer == 'Player 1'){
+        if(game.currentPlayer == 'playerOne'){
             board[index] = 'X'
             button.textContent = 'X'
-            game.currentPlayer = 'Player 2'
+            game.currentPlayer = 'playerTwo'
         }
         else{
             board[index] = 'O'
             button.textContent = 'O'
-            game.currentPlayer = 'Player 1'
+            game.currentPlayer = 'playerOne'
         }
-    button.disabled = true; // disabling button
-    console.log(game.currentPlayer)
-    console.log(board)
-    // for(let a = 0; a < buttons.length;a++){
-    //     console.log(buttons[a])
-    // } printing my nodes
+        button.disabled = true; // disabling button
+        console.log(game.currentPlayer)
+        console.log(board)
+        
+        // console.log(buttons[game.winIndex])
     })
-
 })
-// problems: 
-// how many turns so I can check the winner? 5? for the count?
-//winning condition
-function winCondition(){
-    
-}
+//current problem: 
+// Use the winIndex to help you determine the winner on your board[]
 
+
+function checkWin(){
+    for(let i = 0; i < game.winIndex.length;i++){ //loops through our object
+        const [a,b,c] = game.winIndex[i]
+    }
+}
 
 //later on problems:
 // reset button or automatic reset
