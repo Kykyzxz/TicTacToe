@@ -13,20 +13,11 @@ const game = {
         [2,4,6]
     ]
 }
+let count = 0 //count for the game
 let cols = 3
 let rows = 3
 let board = [] //board of the game
 const buttons = document.querySelectorAll('.btn'); //selects all mybutton
-
-
-//how to set up the board 3*3
-// for(let i = 0; i < cols;i++){
-//     let row = []
-//     board.push(row)
-//     for(let j = 0; j < rows;j++){
-//         row.push('')
-//     }
-// }       
 
 //how the game works(conditions = moves per player)
 buttons.forEach((button, index) => {
@@ -41,20 +32,26 @@ buttons.forEach((button, index) => {
             button.textContent = 'O'
             game.currentPlayer = 'Player 1'
         }
-    button.disabled = true;
+    button.disabled = true; // disabling button
     console.log(game.currentPlayer)
     console.log(board)
-    console.log(board[index])
+    // for(let a = 0; a < buttons.length;a++){
+    //     console.log(buttons[a])
+    // } printing my nodes
     })
 
 })
-// current problem: its a nodeList and the content that I want to put inside the board is not going in why??    
-
-
-
+// problems: 
+// how many turns so I can check the winner? 5? for the count?
 //winning condition
 function winCondition(){
     
 }
+
+
+//later on problems:
+// reset button or automatic reset
+// strikethrough when someone won
+
 
 //[[]]
