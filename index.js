@@ -1,13 +1,18 @@
 const game = {
-    playerOne: 0,
-    playerTwo: 0,
-    currentPlayer: 'playerOne', //indicates which player is going to move
+    // playerOne: 0,  // playerTwo: 0,
+    currentPlayer: 'playerOne', //indicates which player is going to move (playerTwo)
     winIndex: [ // indices for winning
         [0,1,2], [3,4,5],[6,7,8], //rows
         [0,3,6],[1,4,7],[2,5,8], //cols
         [0,4,8],[2,4,6]//diagonals
             ]
 }
+// const gameString = JSON.stringify(game) //stringify the game object
+let gameGetScores = JSON.parse(localStorage.getItem('gameScores')) //get the strings from the localStorage box
+//gameGetScores has playerOne & playerTwo
+
+document.querySelector('.player-one').textContent = `Player 1: ${gameGetScores.playerOne}` //displayes the current score
+document.querySelector('.player-two').textContent = `Player 2: ${gameGetScores.playerTwo}`
 
 let counter = 0
 let winSwitch = null//true:win, false: draw
@@ -30,7 +35,6 @@ buttons.forEach((button, index) => {
             counter += 1
         }
         button.disabled = true; // disabling button
-        console.log(counter)
         checkWin()
     
     })
@@ -42,17 +46,19 @@ function checkWin(){
         if(board[a] && board[a] == board[b] && board[a] == board[c]){
             if(board[a] == 'X'){
                 alert("Player One wins!~")
-                game.playerOne += 1
-                document.querySelector('.player-one').textContent = `Player 1: ${game.playerOne}`
+                gameGetScores.playerOne += 1
                 winSwitch = true
+                localStorage.setItem('gameScores', JSON.stringify(gameGetScores))
+                document.querySelector('.player-one').textContent = `Player 1: ${gameGetScores.playerOne}`
                 resetGame()
                 return; //stops further checks
             }
             else if(board[a] == 'O'){
                 alert("Player Two wins!~")
-                game.playerTwo += 1
-                document.querySelector('.player-two').textContent = `Player 2: ${game.playerTwo}`
+                gameGetScores.playerTwo += 1
                 winSwitch = true
+                localStorage.setItem('gameScores', JSON.stringify(gameGetScores))
+                document.querySelector('.player-two').textContent = `Player 2: ${gameGetScores.playerTwo}`
                 resetGame()
                 return;
             }
@@ -77,5 +83,4 @@ function resetGame(){ //reset function
 }
 
 //current problems:
-// reset button or automatic reset
 // strikethrough when someone won
