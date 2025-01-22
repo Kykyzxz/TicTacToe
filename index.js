@@ -67,10 +67,13 @@ function checkWin(){
 
 function resetGame(){ //reset function
     board = [] //resets the board
-    buttons.textContent = ' ' //reset the content of the buttons
+    winSwitch = null;
     game.currentPlayer = 'playerOne' 
-    buttons.disabled = false
     counter = 0
+    buttons.forEach((button) => {
+        button.textContent = ''
+        button.disabled = false
+    });
 }
 
 //current problems:
