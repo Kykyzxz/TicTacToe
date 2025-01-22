@@ -7,9 +7,17 @@ const game = {
         [0,4,8],[2,4,6]//diagonals
             ]
 }
-// const gameString = JSON.stringify(game) //stringify the game object
+
 let gameGetScores = JSON.parse(localStorage.getItem('gameScores')) //get the strings from the localStorage box
 //gameGetScores has playerOne & playerTwo
+
+if(!gameGetScores){ //check if the gameGetscores is null
+    gameGetScores = { //if null set the a default value
+        playerOne: 0,
+        playerTwo: 0
+    }
+    localStorage.setItem('gameScores',JSON.stringify(gameGetScores))
+}
 
 document.querySelector('.player-one').textContent = `Player 1: ${gameGetScores.playerOne}` //displayes the current score
 document.querySelector('.player-two').textContent = `Player 2: ${gameGetScores.playerTwo}`
