@@ -66,7 +66,7 @@ function checkWin(){
     }
     if(counter === 9 && winSwitch !== true){ 
         alert('Draw')
-        resetGame(); // not working
+        resetGame();
     }
 
 }
