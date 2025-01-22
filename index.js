@@ -9,44 +9,70 @@ const game = {
             ]
 }
 
-let winSwitch = null; //true:win, false:draw, null:game continues
+let counter = 0
+let winSwitch = null//true:win, false: draw
 let board = [] //board of the game
 const buttons = document.querySelectorAll('.btn'); //selects all mybutton/ this is my nodeList
 
 //how the game works(conditions = moves per player)
-//   
 buttons.forEach((button, index) => {
     button.addEventListener('click' , () => {
         if(game.currentPlayer == 'playerOne'){
             board[index] = 'X'
             button.textContent = 'X'
             game.currentPlayer = 'playerTwo'
+            counter += 1
         }
         else{
             board[index] = 'O'
             button.textContent = 'O'
             game.currentPlayer = 'playerOne'
+            counter += 1
         }
         button.disabled = true; // disabling button
-        console.log(game.currentPlayer)
-        console.log(board)
-        
-        // console.log(buttons[game.winIndex])
+        console.log(counter)
+        checkWin()
+    
     })
 })
-//current problem: 
-// Use the winIndex to help you determine the winner on your board[]
-
 
 function checkWin(){
     for(let i = 0; i < game.winIndex.length;i++){ //loops through our object
         const [a,b,c] = game.winIndex[i]
+        if(board[a] && board[a] == board[b] && board[a] == board[c]){
+            if(board[a] == 'X'){
+                alert("Player One wins!~")
+                game.playerOne += 1
+                document.querySelector('.player-one').textContent = `Player 1: ${game.playerOne}`
+                winSwitch = true
+                resetGame()
+                return; //stops further checks
+            }
+            else if(board[a] == 'O'){
+                alert("Player Two wins!~")
+                game.playerTwo += 1
+                document.querySelector('.player-two').textContent = `Player 2: ${game.playerTwo}`
+                winSwitch = true
+                resetGame()
+                return;
+            }
+        }
     }
+    if(counter === 9 && winSwitch !== true){ 
+        alert('Draw')
+        resetGame(); // not working
+    }
+
 }
 
-//later on problems:
+function resetGame(){ //reset function
+    board = [] //resets the board
+    buttons.textContent = ' ' //reset the content of the buttons
+    game.currentPlayer = 'playerOne' 
+    buttons.disabled = false
+    counter = 0
+}
+
+//current problems:
 // reset button or automatic reset
 // strikethrough when someone won
-
-
-//[[]]
