@@ -91,4 +91,5 @@ function resetGame(){ //reset function
 }
 
 //current problems:
+// there seems to be a problem when its published to the github pages: Typer error about the playerOne returning null
 // strikethrough when someone won
