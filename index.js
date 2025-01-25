@@ -26,10 +26,9 @@ let counter = 0
 let winSwitch = null//true:win, false: draw
 let board = [] //board of the game
 const buttons = document.querySelectorAll('.btn'); //selects all mybutton/ this is my nodeList
-
 //how the game works(conditions = moves per player)
 buttons.forEach((button, index) => {
-    button.addEventListener('click' , () => {
+    button.addEventListener('click' ,  () => {
         if(game.currentPlayer == 'playerOne'){
             board[index] = 'X'
             button.textContent = 'X'
@@ -48,7 +47,7 @@ buttons.forEach((button, index) => {
     })
 })
 
-function checkWin(){
+function checkWin() {
     for(let i = 0; i < game.winIndex.length;i++){ //loops through our object
         const [a,b,c] = game.winIndex[i]
         if(board[a] && board[a] == board[b] && board[a] == board[c]){
@@ -91,5 +90,4 @@ function resetGame(){ //reset function
 }
 
 //current problems:
-// there seems to be a problem when its published to the github pages: Typer error about the playerOne returning null
-// strikethrough when someone won
+// pop up at the center when someone Won & also i would like to use the confirm() function
